@@ -1,0 +1,14 @@
+fastapi==0.111.0
+uvicorn==0.30.0
+python-dotenv==1.0.1
+langgraph==0.1.5
+langchain==0.2.11
+langchain-google-genai==1.0.8
+boto3==1.34.144
+azure-identity==1.17.1
+azure-mgmt-compute==31.0.0
+azure-mgmt-costmanagement==4.0.1
+google-cloud-compute==1.19.2
+google-cloud-billing==1.13.2
+langchain-groq==0.1.6
+azure-mgmt-storage==25.0.0
