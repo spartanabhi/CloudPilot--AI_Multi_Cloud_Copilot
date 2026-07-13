@@ -487,7 +487,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     }
 });
 
-// Configure Side Panel behavior on extension installation
 chrome.runtime.onInstalled.addListener(() => {
     try {
         if (chrome.sidePanel && chrome.sidePanel.setPanelBehavior) {
