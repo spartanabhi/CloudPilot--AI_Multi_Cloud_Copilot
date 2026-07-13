@@ -12,3 +12,5 @@ google-cloud-compute==1.19.2
 google-cloud-billing==1.13.2
 langchain-groq==0.1.6
 azure-mgmt-storage==25.0.0
+google-cloud-storage==3.12.1
+google-cloud-billing-budgets==1.21.0

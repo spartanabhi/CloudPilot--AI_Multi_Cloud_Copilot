@@ -1,1 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CloudPilot Sidebar</title>
+    <link rel="stylesheet" href="sidepanel.css">
+</head>
+<body>
+    <!-- Top Header Section -->
+    <header class="header">
+        <div class="header-left">
+            <div class="brand">
+                <span class="logo">☁️</span>
+                <h1>CloudPilot</h1>
+            </div>
+            <span class="subtitle">AI Multi-Cloud Copilot</span>
+            <div class="status-container">
+                <span id="status-dot" class="status-dot offline"></span>
+                <span id="status-text" class="status-text">Offline</span>
+            </div>
+        </div>
+        <div class="header-actions">
+            <div id="provider-badge" class="badge badge-unknown">Unknown</div>
+            
+            <button id="export-btn" class="icon-btn" title="Export Chat" aria-label="Export chat history to Markdown">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+            </button>
+            
+            <button id="clear-btn" class="icon-btn" title="Clear Chat" aria-label="Clear chat history">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="3 6 5 6 21 6"></polyline>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                    <line x1="10" y1="11" x2="10" y2="17"></line>
+                    <line x1="14" y1="11" x2="14" y2="17"></line>
+                </svg>
+            </button>
 
+            <button id="settings-btn" class="icon-btn" title="Settings" aria-label="Open settings">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Offline Warning Bar -->
+    <div id="connection-warning" class="connection-warning-bar hidden">
+        <span class="warning-icon">⚠</span> Backend Offline — Verify URL in Settings
+    </div>
+
+    <!-- Scrollable Conversation Area -->
+    <main id="chat-log" class="chat-log empty-state">
+        <div class="placeholder-container">
+            <div class="placeholder-icon">☁️</div>
+            <p class="placeholder-text">Welcome to CloudPilot</p>
+            <span class="placeholder-subtext">AI assistant for AWS, Azure and GCP.</span>
+            <div id="suggested-actions" class="suggested-actions"></div>
+        </div>
+    </main>
+
+    <!-- Bottom Input Section -->
+    <footer class="input-area">
+        <div class="input-wrapper">
+            <input 
+                type="text" 
+                id="question-input" 
+                placeholder="Ask about your cloud..." 
+                autocomplete="off"
+            />
+            <button id="send-btn" aria-label="Send message">
+                <div id="send-btn-spinner" class="spinner hidden"></div>
+                <svg id="send-btn-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+            </button>
+        </div>
+    </footer>
+
+    <!-- Settings Modal Overlay -->
+    <div id="settings-modal" class="modal-overlay hidden">
+        <div class="modal-card">
+            <h3>CloudPilot Settings</h3>
+            <div class="form-group">
+                <label for="backend-url-input">Backend URL</label>
+                <input type="url" id="backend-url-input" placeholder="http://127.0.0.1:8000" />
+            </div>
+            <div class="modal-actions">
+                <button id="settings-save-btn" class="btn btn-primary">Save Changes</button>
+                <button id="settings-cancel-btn" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="sidepanel.js"></script>
+</body>
+</html>

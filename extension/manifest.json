@@ -1,1 +1,32 @@
-
+{
+  "manifest_version": 3,
+  "name": "CloudPilot — Multi-Cloud AI Copilot",
+  "version": "1.0",
+  "description": "An AI copilot sidebar for AWS, Azure, and GCP consoles.",
+  "permissions": [
+    "sidePanel",
+    "tabs",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://console.aws.amazon.com/*",
+    "https://portal.azure.com/*",
+    "https://console.cloud.google.com/*",
+    "http://localhost:8000/*",
+    "http://127.0.0.1:8000/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "action": {
+    "default_title": "Open CloudPilot"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
