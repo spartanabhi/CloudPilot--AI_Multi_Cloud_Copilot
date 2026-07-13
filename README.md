@@ -7,7 +7,7 @@
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License" />
 </p>
 
-An intelligent, context-aware browser extension side panel that embeds directly into the **AWS Console**, **Azure Portal**, and **Google Cloud Console**. CloudPilot dynamically detects which cloud service or resource page you are viewing, injects this active context, and answers complex infrastructure, security, and cost questions in plain English using **LangGraph ReAct agents** and live, read-only APIs.
+An intelligent, context-aware browser extension side panel that embeds directly into the **AWS Console**, **Azure Portal**, and **Google Cloud Console**. CloudPilot dynamically detects which cloud service or resource page you are viewing, injects this active context, and answers complex infrastructure, security, and cost questions in plain English using **LangGraph ReAct agents** and live, read-only APIs
 
 ---
 
